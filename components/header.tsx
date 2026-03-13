@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dropdown } from 'antd';
+import { Button } from 'antd';
 import { useRouter } from 'next/navigation';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeNav, setActiveNav] = useState('HOME');
-  const [coursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
   const [isCoursesHovered, setIsCoursesHovered] = useState(false);
+  const [hoveredCourseIndex, setHoveredCourseIndex] = useState<number | null>(null);
   const router = useRouter();
 
   const courses = [
@@ -50,15 +50,15 @@ const Header = () => {
     header: {
       width: '100%',
       height: '80px',
-      position: 'fixed',
+      position: 'fixed' as const,
       top: 0,
       left: 0,
       zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
+      display: 'flex' as const,
+      alignItems: 'center' as const,
+      justifyContent: 'space-between' as const,
       padding: '0 60px',
-      boxSizing: 'border-box',
+      boxSizing: 'border-box' as const,
       transition: 'all 0.4s ease',
       background: scrolled ? '#fff' : 'transparent',
       boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.1)' : 'none',
@@ -78,20 +78,6 @@ const Header = () => {
       justifyContent: 'center',
       boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
       overflow: 'hidden',
-    },
-    logoInner: {
-      width: '45px',
-      height: '45px',
-      borderRadius: '50%',
-      background: 'conic-gradient(from 0deg, #ff6b35 0deg, #ffd700 90deg, #4ecdc4 180deg, #45b7d1 270deg, #ff6b35 360deg)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    logoStar: {
-      color: '#1a365d',
-      fontSize: '22px',
-      fontWeight: 'bold',
     },
     logoText: {
       color: scrolled ? '#1a202c' : '#fff',
@@ -134,7 +120,7 @@ const Header = () => {
       whiteSpace: 'nowrap' as const,
     },
     activeUnderline: {
-      position: 'absolute',
+      position: 'absolute' as const,
       bottom: '-4px',
       left: '0',
       width: '100%',
@@ -226,7 +212,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Vertical Divider */}
         <div style={styles.verticalDivider}></div>
 
         {/* Navigation */}
@@ -238,50 +223,43 @@ const Header = () => {
                   key={item}
                   style={activeNav === item ? styles.navItemActive : styles.navItem}
                   onMouseEnter={() => setIsCoursesHovered(true)}
-                  onMouseLeave={() => setIsCoursesHovered(false)}
+                  onMouseLeave={() => {
+                    setIsCoursesHovered(false);
+                    setHoveredCourseIndex(null);
+                  }}
                 >
                   {item}
-                  {/* Courses Menu on Hover */}
                   <div style={{
                     position: 'absolute' as const,
                     top: '100%',
                     left: '0',
                     background: '#fff',
-                    borderRadius: '8px',
+                    borderRadius: '4px',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-                    padding: '12px 0',
-                    minWidth: '250px',
-                    minHeight: '200px',
+                    padding: '8px 0',
+                    minWidth: '280px',
                     display: isCoursesHovered ? 'block' : 'none',
                     zIndex: 1000
                   }}>
                     {courses.map((course, idx) => (
                       <div
                         key={idx}
+                        onMouseEnter={() => setHoveredCourseIndex(idx)}
+                        onMouseLeave={() => setHoveredCourseIndex(null)}
                         style={{
-                          padding: '8px 16px',
+                          padding: '12px 20px',
                           cursor: 'pointer',
-                          transition: 'background 0.2s ease',
-                          borderRadius: '4px',
-                          '&:hover': {
-                            background: isCoursesHovered ? '#f5f5f5' : 'transparent'
-                          }
+                          transition: 'all 0.2s ease',
+                          background: hoveredCourseIndex === idx ? '#f39c12' : 'transparent',
+                          color: hoveredCourseIndex === idx ? '#ffffff' : '#333333',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          textTransform: 'uppercase'
                         }}
                         onClick={() => {
                           setIsCoursesHovered(false);
-                          // Navigate to course page
-                          const courseRoutes: { [key: string]: string } = {
-                            'Diploma in Health Assistant (Nursing)': '/health-assistant',
-                            'Diploma in Medical Lab Technician': '/medical-lab',
-                            'Diploma in Operation Theatre Technician': '/operation-theatre',
-                            'Diploma in Physiotherapy': '/physiotherapy',
-                            'Diploma in X-Ray Technician': '/x-ray',
-                            'Diploma in Dental Technician': '/dental',
-                            'Diploma in Eye Technician': '/eye'
-                          };
-                          const route = courseRoutes[course];
-                          if (route) {
-                            router.push(route);
+                          if (course === 'Diploma in Health Assistant (Nursing)') {
+                            router.push('/courses/nursing');
                           }
                         }}
                       >
@@ -297,16 +275,6 @@ const Header = () => {
                 key={item}
                 style={activeNav === item ? styles.navItemActive : styles.navItem}
                 onClick={() => handleNavigation(item)}
-                onMouseEnter={(e) => {
-                  if (activeNav !== item) {
-                    e.target.style.color = '#ffc107';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeNav !== item) {
-                    e.target.style.color = scrolled ? '#4a5568' : '#fff';
-                  }
-                }}
               >
                 {item}
                 {activeNav === item && <span style={styles.activeUnderline}></span>}
@@ -314,24 +282,12 @@ const Header = () => {
             );
           })}
           
-          {/* Admission Badge */}
           <div style={styles.admissionBadge}>
             <div style={styles.admissionText}>
               <span style={styles.yearText}>2026-27</span>
               <span style={styles.admissionLabel}>Admission Open</span>
             </div>
-            <Button
-              style={styles.applyButton}
-              onClick={handleApplyNow}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#1a202c';
-                e.target.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#2d3748';
-                e.target.style.transform = 'translateY(0)';
-              }}
-            >
+            <Button style={styles.applyButton} onClick={handleApplyNow}>
               Apply Now
             </Button>
           </div>

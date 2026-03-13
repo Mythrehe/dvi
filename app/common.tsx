@@ -8,9 +8,9 @@ export const DEFAULT_TEXT_COLOR = '#343434';
 export function usePageTitle(pageName: string) {
   useEffect(() => {
     if (pageName) {
-      document.title = `${pageName} | Crestcode`;
+      document.title = `${pageName} | Dhanvanthiri`;
     } else {
-      document.title = 'Crestcode';
+      document.title = 'Dhanvanthiri';
     }
   }, [pageName]);
 }

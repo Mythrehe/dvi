@@ -20,8 +20,6 @@ import React, {
 } from 'react';
 import { WishlistFormRef } from '@/components/hero-section';
 import Form from '@/components/home/form';
-import { ContactFormProvider } from '@/components/ContactFormContext';
-import GlobalContactFormModal from '@/components/GlobalContactFormModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -67,13 +65,12 @@ function RootLayoutContent({ children }: RootLayoutProps) {
   };
 
   return (
-    <ContactFormProvider>
+    <WishlistFormContext.Provider value={wishlistFormRef}>
       <div style={{ minHeight: '100vh', backgroundColor: '#ffffff' }}>
         <AdminBar />
         <div style={{ paddingTop: 'var(--admin-bar-height, 0)' }}>
           <Header />
           <main>{children}</main>
-          <Form />
           <Footer />
           {showScroll && (
             <FloatButton
@@ -88,7 +85,6 @@ function RootLayoutContent({ children }: RootLayoutProps) {
               style={{
                 right: 24,
                 bottom: 24,
-                // boxShadow: '0 4px 20px #6366F1',
                 borderRadius: '50%',
                 width: 38,
                 height: 38,
@@ -103,9 +99,8 @@ function RootLayoutContent({ children }: RootLayoutProps) {
           )}
         </div>
         <LoginModal />
-        <GlobalContactFormModal />
       </div>
-    </ContactFormProvider>
+    </WishlistFormContext.Provider>
   );
 }
 

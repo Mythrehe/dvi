@@ -6,6 +6,12 @@ import { ArrowUpOutlined } from '@ant-design/icons';
 
 const { Title, Text, Paragraph } = Typography;
 
+interface Course {
+  name: string;
+  duration: string;
+  seats: string;
+}
+
 const DhanvantriCourses = () => {
   const rowOne = [
     { name: 'Health Assistant (Nursing)', duration: '02 years', seats: '50' },
@@ -24,9 +30,9 @@ const DhanvantriCourses = () => {
   const accentOrange = '#ffa800'; 
   const cardBg = '#f8f7f2';
 
-  const CourseCard = ({ course }) => (
+  const CourseCard = ({ course }: { course: Course }) => (
     <Card 
-      bordered={false}
+      variant="borderless"
       style={{ 
         background: cardBg, 
         textAlign: 'center',

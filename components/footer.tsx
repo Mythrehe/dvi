@@ -1,9 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { CSSProperties } from 'react';
 
 const Footer = () => {
   const router = useRouter();
-  const styles = {
+  const styles: { [key: string]: CSSProperties } = {
     footer: {
       width: '100%',
       backgroundColor: '#0d1b2a',

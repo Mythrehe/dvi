@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button, Carousel } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { CSSProperties } from 'react';
+
+interface CarouselRef {
+  next: () => void;
+  prev: () => void;
+  goTo: (index: number) => void;
+}
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [carouselRef, setCarouselRef] = useState(null);
+  const [carouselRef, setCarouselRef] = useState<CarouselRef | null>(null);
 
   const slides = [
     {
@@ -45,7 +52,7 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  const styles = {
+  const styles: { [key: string]: CSSProperties } = {
     heroContainer: {
       width: '100%',
       height: '100vh',
@@ -292,15 +299,15 @@ const HeroSection = () => {
                     <p style={styles.description}>{slide.description}</p>
                     <Button
                       style={styles.ctaButton}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#fff';
-                        e.target.style.transform = 'translateY(-3px)';
-                        e.target.style.boxShadow = '0 15px 40px rgba(255,255,255,0.3)';
+                      onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        e.currentTarget.style.background = '#fff';
+                        e.currentTarget.style.transform = 'translateY(-3px)';
+                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(255,255,255,0.3)';
                       }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = '#ffc107';
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 10px 30px rgba(255,193,7,0.3)';
+                      onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        e.currentTarget.style.background = '#ffc107';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(255,193,7,0.3)';
                       }}
                     >
                       Discover More
@@ -317,17 +324,17 @@ const HeroSection = () => {
           <button
             style={styles.navButton}
             onClick={prevSlide}
-            onMouseEnter={(e) => {
-              e.target.style.background = '#ffc107';
-              e.target.style.borderColor = '#ffc107';
-              e.target.style.color = '#1a202c';
-              e.target.style.transform = 'scale(1.1)';
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.background = '#ffc107';
+              e.currentTarget.style.borderColor = '#ffc107';
+              e.currentTarget.style.color = '#1a202c';
+              e.currentTarget.style.transform = 'scale(1.1)';
             }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'rgba(255,255,255,0.1)';
-              e.target.style.borderColor = 'rgba(255,255,255,0.3)';
-              e.target.style.color = '#fff';
-              e.target.style.transform = 'scale(1)';
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'scale(1)';
             }}
           >
             <LeftOutlined />
@@ -335,17 +342,17 @@ const HeroSection = () => {
           <button
             style={styles.navButton}
             onClick={nextSlide}
-            onMouseEnter={(e) => {
-              e.target.style.background = '#ffc107';
-              e.target.style.borderColor = '#ffc107';
-              e.target.style.color = '#1a202c';
-              e.target.style.transform = 'scale(1.1)';
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.background = '#ffc107';
+              e.currentTarget.style.borderColor = '#ffc107';
+              e.currentTarget.style.color = '#1a202c';
+              e.currentTarget.style.transform = 'scale(1.1)';
             }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'rgba(255,255,255,0.1)';
-              e.target.style.borderColor = 'rgba(255,255,255,0.3)';
-              e.target.style.color = '#fff';
-              e.target.style.transform = 'scale(1)';
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'scale(1)';
             }}
           >
             <RightOutlined />
