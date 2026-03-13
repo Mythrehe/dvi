@@ -22,7 +22,7 @@ const HeroSection = () => {
       description: 'Excellence in pharmaceutical education and research'
     },
     {
-      image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=1920&h=1080&fit=crop',
+      image: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?q=80&w=2070&auto=format&fit=crop',
       title: 'Discover',
       highlight: 'Innovation',
       subtitle: 'In Research.',
@@ -96,7 +96,7 @@ const HeroSection = () => {
     },
     yellowShape: {
       position: 'absolute',
-      left: '-100px',
+      left: '-155px',
       top: '50%',
       transform: 'translateY(-50%) skewX(-15deg)',
       width: '400px',
@@ -108,7 +108,7 @@ const HeroSection = () => {
     titleContainer: {
       position: 'relative',
       zIndex: 2,
-      marginLeft: '40px',
+      marginLeft: '150px',
     },
     title: {
       fontSize: '72px',

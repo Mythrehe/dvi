@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { m } from 'framer-motion';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -8,6 +10,10 @@ const Header = () => {
   const [isCoursesHovered, setIsCoursesHovered] = useState(false);
   const [hoveredCourseIndex, setHoveredCourseIndex] = useState<number | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Check if current route is /registration
+  const isRegistrationRoute = pathname === '/registration';
 
   const courses = [
     'Diploma in Health Assistant (Nursing)',
@@ -38,6 +44,10 @@ const Header = () => {
     router.push('/registration');
   };
 
+  const handleBackToHome = () => {
+    router.push('/');
+  };
+
   const navItems = [
     'HOME',
     'ABOUT US',
@@ -47,14 +57,68 @@ const Header = () => {
   ];
 
   const styles = {
-    header: {
+    // Registration Route - Minimal Header with Back Button
+    registrationHeader: {
+      position: 'fixed' as const,
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '80px',
+      zIndex: 1000,
+      display: isRegistrationRoute ? 'flex' : 'none',
+      alignItems: 'center',
+      padding: '0 40px',
+      background: 'transparent',
+    },
+    backButtonContainer: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    backButton: {
+      background: 'linear-gradient(135deg, #ffc107 0%, #ffb300 50%, #ff8f00 100%)',
+      color: '#1a202c',
+      border: 'none',
+      borderRadius: '50px',
+      padding: '14px 28px',
+      fontSize: '14px',
+      fontWeight: '700',
+      cursor: 'pointer',
+      textTransform: 'uppercase',
+      letterSpacing: '1.5px',
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: '50px',
+      marginTop: '60px',
+      gap: '10px',
+      // boxShadow: '0 8px 25px rgba(255, 193, 7, 0.4), 0 4px 10px rgba(0, 0, 0, 0.1)',
+      // transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      position: 'relative' as const,
+      overflow: 'hidden',
+    },
+    backButtonIcon: {
+      fontSize: '18px',
+      transition: 'transform 0.3s ease',
+    },
+    backButtonGlow: {
+      position: 'absolute' as const,
+      top: '-50%',
+      left: '-50%',
+      width: '200%',
+      height: '200%',
+      background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+      opacity: 0,
+      transition: 'opacity 0.3s ease',
+      pointerEvents: 'none' as const,
+    },
+    // Original Header Styles (hidden on registration)
+    mainHeader: {
       width: '100%',
       height: '80px',
       position: 'fixed' as const,
       top: 0,
       left: 0,
       zIndex: 1000,
-      display: 'flex' as const,
+      display: isRegistrationRoute ? 'none' : 'flex',
       alignItems: 'center' as const,
       justifyContent: 'space-between' as const,
       padding: '0 60px',
@@ -190,20 +254,63 @@ const Header = () => {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.02); }
         }
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4), 0 4px 10px rgba(0, 0, 0, 0.1); }
+          50% { box-shadow: 0 12px 35px rgba(255, 193, 7, 0.6), 0 6px 15px rgba(0, 0, 0, 0.15); }
+        }
+        .back-button-animate {
+          animation: pulse-glow 2s infinite;
+        }
+        .back-button-animate:hover {
+          animation: none;
+        }
       `}</style>
-      <header style={styles.header}>
+
+      {/* Registration Route - Only Back Button */}
+      <header style={styles.registrationHeader}>
+        <div style={styles.backButtonContainer}>
+          <button
+            style={styles.backButton}
+            className="back-button-animate"
+            onClick={handleBackToHome}
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.transform = 'translateX(-5px) scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 193, 7, 0.6), 0 8px 20px rgba(0, 0, 0, 0.2)';
+              const glow = e.currentTarget.querySelector('.glow-overlay') as HTMLElement;
+              if (glow) glow.style.opacity = '1';
+              const icon = e.currentTarget.querySelector('.back-icon') as HTMLElement;
+              if (icon) icon.style.transform = 'translateX(-4px)';
+            }}
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.currentTarget.style.transform = 'translateX(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 193, 7, 0.4), 0 4px 10px rgba(0, 0, 0, 0.1)';
+              const glow = e.currentTarget.querySelector('.glow-overlay') as HTMLElement;
+              if (glow) glow.style.opacity = '0';
+              const icon = e.currentTarget.querySelector('.back-icon') as HTMLElement;
+              if (icon) icon.style.transform = 'translateX(0)';
+            }}
+          >
+            <span className="glow-overlay" style={styles.backButtonGlow}></span>
+            <ArrowLeftOutlined className="back-icon" style={styles.backButtonIcon} />
+            Back to Home
+          </button>
+        </div>
+      </header>
+
+      {/* Main Header - Hidden on Registration Route */}
+      <header style={styles.mainHeader}>
         {/* Logo Section */}
         <div style={styles.logoSection}>
           <div style={styles.logoCircle}>
-            <img 
-              src="dvi_logo.jpeg" 
+            <img
+              src="dvi_logo.jpeg"
               alt="Sri Dhanvantri Healthcare Training Institute Logo"
-              style={{ 
-                width: '45px', 
+              style={{
+                width: '45px',
                 height: '45px',
                 borderRadius: '50%',
                 objectFit: 'cover'
-              }} 
+              }}
             />
           </div>
           <div style={styles.logoText}>
@@ -281,7 +388,7 @@ const Header = () => {
               </div>
             );
           })}
-          
+
           <div style={styles.admissionBadge}>
             <div style={styles.admissionText}>
               <span style={styles.yearText}>2026-27</span>

@@ -132,24 +132,23 @@ const Footer = () => {
 
   const exploreLinks = [
     'About us',
-    'Gallery',
-    'Faculty',
-    'Research Activities',
+    // 'Gallery',
+    // 'Faculty',
+    // 'Research Activities',
     'Videos',
     'Contact us',
-    'Sitemap',
+    // 'Sitemap',
     'Privacy Policy'
   ];
 
-  const studentLinks = [
-    'Apply Online',
-    'Women Welfare Cell',
-    'Alumni',
-    'Placements',
-    'Anti-Ragging Committee',
-    'Mandatory Disclosure',
-    'Students Welfare Cell',
-    'Grievence'
+  const courseLinks = [
+    'Health Assistant (Nursing)',
+    'Medical Lab Technician',
+    'Operation Theatre Technician',
+    'Physiotherapy',
+    'X-Ray Technician',
+    'Dental Technician',
+    'Eye Technician'
   ];
 
   const handleLinkHover = (e: React.MouseEvent<HTMLAnchorElement>, isEnter: boolean) => {
@@ -220,8 +219,8 @@ const Footer = () => {
 
         {/* For Students Column */}
         <div style={styles.column}>
-          <h4 style={styles.columnTitle}>For Students</h4>
-          {studentLinks.map((link, index) => (
+          <h4 style={styles.columnTitle}>Courses Offered</h4>
+          {courseLinks.map((link, index) => (
             <a
               key={index}
               href="#"
