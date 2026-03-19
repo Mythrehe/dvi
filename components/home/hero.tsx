@@ -15,21 +15,21 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: '/hero_img1.jpeg',
+      image: '/hero-image2.jpeg',
       title: 'SRI DHANVANTRI',
       highlight: 'Healthcare and Training Institute',
       description: 'Our College bridges high school and university, offering a two-year curriculum preparing students for higher education. It emphasizes academic excellence and holistic development.',
       tagline: 'Pathway to University Success'
     },
     {
-      image:'/hero_img2.jpeg',
+      image:'/hero_img1.jpeg',
       title: 'ADVANCED',
       highlight: 'PARAMEDICAL SCIENCES',
       description: 'Master the art of diagnostics and clinical support. Our paramedical programs are designed with state-of-the-art simulation labs to give you hands-on experience.',
       tagline: 'Leading the Future of Care'
     },
     {
-      image: '/hero_img3_1.jpeg',
+      image: '/hero-image1.jpeg',
       title: 'NURSING &',
       highlight: 'PATIENT CARE',
       description: 'Join a profession dedicated to humanity. Our nursing institute provides a compassionate yet rigorous training environment for global healthcare challenges.',
@@ -110,7 +110,7 @@ const HeroSection = () => {
           width: 55%;
           height: 100%;
           object-fit: cover;
-          object-position: left center;
+          object-position: 75% center;
           display: block;
           position: absolute;
           left: 0;
@@ -160,7 +160,7 @@ const HeroSection = () => {
             width: 55% !important;
             height: 100% !important;
             object-fit: cover !important;
-            object-position: left center !important;
+            object-position: 25% center !important;
             position: absolute !important;
             left: 0 !important;
             top: 0 !important;
