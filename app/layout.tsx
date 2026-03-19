@@ -9,6 +9,7 @@ import AdminBar from '@/components/admin/adminpannel';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import LoginModal from '@/components/admin/adminmodal';
+import PageLoader from '@/components/loader';
 import { FloatButton } from 'antd';
 import { UpCircleFilled } from '@ant-design/icons';
 import React, {
@@ -42,6 +43,7 @@ interface RootLayoutProps {
 function RootLayoutContent({ children }: RootLayoutProps) {
   const [showScroll, setShowScroll] = useState(false);
   const [hover, setHover] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const wishlistFormRef = useRef<WishlistFormRef>({ focusAndGlow: () => {} });
 
   useEffect(() => {
@@ -57,6 +59,15 @@ function RootLayoutContent({ children }: RootLayoutProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToHero = () => {
     const hero = document.getElementById('hero-section');
     if (hero) {
@@ -66,6 +77,7 @@ function RootLayoutContent({ children }: RootLayoutProps) {
 
   return (
     <WishlistFormContext.Provider value={wishlistFormRef}>
+      <PageLoader isLoading={isLoading} />
       <div style={{ minHeight: '100vh', backgroundColor: '#ffffff' }}>
         <AdminBar />
         <div style={{ paddingTop: 'var(--admin-bar-height, 0)' }}>
