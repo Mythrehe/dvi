@@ -16,7 +16,6 @@ import {
 import { RootState } from '@/store';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import DocklyLoader from '../dockly-loader';
 
 interface AdminContextType {
   isAdmin: boolean;

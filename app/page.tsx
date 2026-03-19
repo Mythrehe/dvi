@@ -19,16 +19,31 @@ export default function HomePage() {
     return () => window.removeEventListener('showServices', handleShowServices);
   }, []);
 
-  usePageTitle('Crestcode - high-performance technical consultancy');
 
   return (
-    <div style={{ backgroundColor: '#F8FAFC' }}>
-      <Hero />
-      <Course />
-      <Scope/>
-      <OfferedCourses/>
-      {/*<WhyCrestcode />
-      <FAQ />*/}
-    </div>
+    <>
+      <style jsx>{`
+        /* Responsive Home Page Styles */
+        @media (max-width: 1024px) {
+          .home-page {
+            padding: 0 20px !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .home-page {
+            padding: 0 10px !important;
+          }
+        }
+      `}</style>
+      <div style={{ backgroundColor: '#F8FAFC' }} className="home-page">
+        <Hero />
+        <Course />
+        <Scope/>
+        <OfferedCourses/>
+        {/*<WhyCrestcode />
+        <FAQ />*/}
+      </div>
+    </>
   );
 }

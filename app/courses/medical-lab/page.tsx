@@ -8,34 +8,35 @@ import {
   SafetyCertificateOutlined,
   GlobalOutlined,
   ThunderboltOutlined,
-  HeartOutlined
+  MedicineBoxOutlined,
+  ExperimentOutlined
 } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
 
-const NursingPage = () => {
+const MedicalLabPage = () => {
   const router = useRouter();
   const careerPaths = [
-    "Hospital Nursing Assistant", "Clinic Healthcare Assistant",
-    "Long-term Care Facility Aide", "Home Health Care Provider",
-    "Rehabilitation Center Assistant", "Emergency Room Support Staff",
-    "Outpatient Care Coordinator", "Community Health Worker"
+    "Medical Lab Technologist", "Pathology Technician",
+    "Clinical Biochemistry Asst.", "Microbiology Technician",
+    "Hematology Specialist", "Blood Bank Technician",
+    "Molecular Biology Lab Asst.", "Diagnostic Center Manager"
   ];
 
   const uniquePoints = [
     {
-      title: "Smart-Ward Simulation",
-      desc: "Train in a high-fidelity environment that mimics modern ICU setups.",
+      title: "Advanced Bio-Labs",
+      desc: "Train in sophisticated clinical laboratories with modern diagnostic tools.",
+      icon: <ExperimentOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
+    },
+    {
+      title: "Diagnostic Mastery",
+      desc: "Learn comprehensive testing procedures across Pathology & Biochemistry.",
       icon: <ThunderboltOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     },
     {
-      title: "Holistic Care Protocol",
-      desc: "Beyond medicine, we focus on psychological support and patient empathy.",
-      icon: <HeartOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
-    },
-    {
-      title: "Global Standards",
-      desc: "Curriculum aligned with international healthcare assistant benchmarks.",
+      title: "Clinical Accuracy",
+      desc: "Emphasis on precision, quality control, and laboratory safety standards.",
       icon: <GlobalOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     }
   ];
@@ -57,12 +58,12 @@ const NursingPage = () => {
             </Tag>
             <Title level={1} className="hero-title" style={{ 
               color: '#1a202c', 
-              fontSize: 'clamp(28px, 5vw, 48px)', 
+              fontSize: 'clamp(28px, 5vw, 42px)', 
               fontWeight: '800', 
               marginBottom: '16px',
               lineHeight: 1.2
             }}>
-              Diploma in Health Assistant (Nursing)
+              Diploma in Medical Laboratory Technician
             </Title>
             <Paragraph className="hero-description" style={{ 
               color: '#2d3748', 
@@ -71,7 +72,7 @@ const NursingPage = () => {
               margin: '0 auto',
               lineHeight: 1.6
             }}>
-              Master the art of clinical support and patient advocacy in our industry-leading nursing program.
+              Master the science of diagnostics and play a critical role in disease detection and patient treatment planning.
             </Paragraph>
           </div>
         </div>
@@ -202,37 +203,20 @@ const NursingPage = () => {
 
       <style jsx>{`
         @media (max-width: 991px) {
-          .content-section {
-            margin-top: 24px !important;
-          }
+          .content-section { margin-top: 24px !important; }
         }
-
         @media (max-width: 768px) {
-          .hero-section {
-            padding: 40px 20px !important;
-          }
-          .feature-point {
-            flex-direction: row !important; /* Keep icon side-by-side on tablet/large mobile */
-            text-align: left !important;
-          }
+          .hero-section { padding: 40px 20px !important; }
+          .feature-point { flex-direction: row !important; text-align: left !important; }
         }
-
         @media (max-width: 576px) {
-          .feature-point {
-            flex-direction: column !important; /* Stack icon on top for small phones */
-            align-items: center !important;
-            text-align: center !important;
-          }
-          .feature-icon {
-            margin-bottom: 0 !important;
-          }
-          .feature-title {
-             font-size: 20px !important;
-          }
+          .feature-point { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+          .feature-icon { margin-bottom: 0 !important; }
+          .feature-title { font-size: 20px !important; }
         }
       `}</style>
     </ConfigProvider>
   );
 };
 
-export default NursingPage;
+export default MedicalLabPage;

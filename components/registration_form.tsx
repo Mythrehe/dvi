@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Form,
   Input,
@@ -14,6 +15,7 @@ import {
   ConfigProvider,
   Space
 } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 
 interface FormValues {
@@ -43,6 +45,7 @@ const { TextArea } = Input;
 
 const RegisterForm = () => {
   const [form] = Form.useForm();
+  const router = useRouter();
   const brandOrange = '#ffa800';
 
   const courses = [
@@ -75,8 +78,36 @@ const RegisterForm = () => {
         },
       }}
     >
-      <section style={{ background: '#fff', padding: '60px 20px', minHeight: '100vh', marginTop: '40px' }}>
+      <section style={{ background: '#fff', padding: '40px 20px', minHeight: '100vh' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          {/* Back to Home Button */}
+          <Button
+            type="text"
+            icon={<ArrowLeftOutlined />}
+            onClick={() => router.push('/')}
+            style={{
+              marginBottom: '20px',
+              color: brandOrange,
+              border: `1px solid ${brandOrange}`,
+              borderRadius: '4px',
+              padding: '8px 16px',
+              fontSize: '14px',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = brandOrange;
+              e.currentTarget.style.color = '#fff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = brandOrange;
+            }}
+          >
+            Back to Home
+          </Button>
 
           <Space align="center" style={{ marginBottom: '10px' }}>
             <div style={{ width: '20px', height: '2px', background: brandOrange }} />

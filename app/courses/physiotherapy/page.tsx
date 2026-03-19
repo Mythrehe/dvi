@@ -13,29 +13,29 @@ import {
 
 const { Title, Paragraph, Text } = Typography;
 
-const NursingPage = () => {
+const PhysiotherapyPage = () => {
   const router = useRouter();
   const careerPaths = [
-    "Hospital Nursing Assistant", "Clinic Healthcare Assistant",
-    "Long-term Care Facility Aide", "Home Health Care Provider",
-    "Rehabilitation Center Assistant", "Emergency Room Support Staff",
-    "Outpatient Care Coordinator", "Community Health Worker"
+    "Physiotherapy Assistant", "Rehabilitation Specialist",
+    "Sports Physiotherapist", "Pediatric Physiotherapist",
+    "Geriatric Care Specialist", "Neurological Rehabilitation Assistant",
+    "Orthopedic Physiotherapist", "Cardiopulmonary Rehabilitation Therapist"
   ];
 
   const uniquePoints = [
     {
-      title: "Smart-Ward Simulation",
-      desc: "Train in a high-fidelity environment that mimics modern ICU setups.",
-      icon: <ThunderboltOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
-    },
-    {
-      title: "Holistic Care Protocol",
-      desc: "Beyond medicine, we focus on psychological support and patient empathy.",
+      title: "Rehabilitation Excellence",
+      desc: "Master advanced physiotherapy techniques and rehabilitation protocols.",
       icon: <HeartOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     },
     {
-      title: "Global Standards",
-      desc: "Curriculum aligned with international healthcare assistant benchmarks.",
+      title: "Hands-on Training",
+      desc: "Extensive clinical practice in real healthcare settings.",
+      icon: <ThunderboltOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
+    },
+    {
+      title: "Specialized Programs",
+      desc: "Focus on sports medicine, pediatrics, and geriatric care.",
       icon: <GlobalOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     }
   ];
@@ -57,12 +57,12 @@ const NursingPage = () => {
             </Tag>
             <Title level={1} className="hero-title" style={{ 
               color: '#1a202c', 
-              fontSize: 'clamp(28px, 5vw, 48px)', 
+              fontSize: 'clamp(28px, 5vw, 42px)', 
               fontWeight: '800', 
               marginBottom: '16px',
               lineHeight: 1.2
             }}>
-              Diploma in Health Assistant (Nursing)
+              Diploma in Physiotherapy
             </Title>
             <Paragraph className="hero-description" style={{ 
               color: '#2d3748', 
@@ -71,7 +71,7 @@ const NursingPage = () => {
               margin: '0 auto',
               lineHeight: 1.6
             }}>
-              Master the art of clinical support and patient advocacy in our industry-leading nursing program.
+              Transform lives through therapeutic movement and rehabilitation science in our comprehensive physiotherapy program.
             </Paragraph>
           </div>
         </div>
@@ -85,7 +85,7 @@ const NursingPage = () => {
           <Row gutter={[32, 32]} align="stretch">
             
             {/* LEFT CARD - Detailed Info */}
-            <Col xs={24} lg={15}>
+            <Col xs={24} lg={15} style={{ display: 'flex' }}>
               <Card 
                 className="feature-card"
                 bordered={false} 
@@ -93,6 +93,7 @@ const NursingPage = () => {
                   borderRadius: '16px', 
                   boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
                   height: '100%',
+                  width: '100%',
                   padding: 'clamp(10px, 3vw, 24px)'
                 }}
               >
@@ -202,37 +203,20 @@ const NursingPage = () => {
 
       <style jsx>{`
         @media (max-width: 991px) {
-          .content-section {
-            margin-top: 24px !important;
-          }
+          .content-section { margin-top: 24px !important; }
         }
-
         @media (max-width: 768px) {
-          .hero-section {
-            padding: 40px 20px !important;
-          }
-          .feature-point {
-            flex-direction: row !important; /* Keep icon side-by-side on tablet/large mobile */
-            text-align: left !important;
-          }
+          .hero-section { padding: 40px 20px !important; }
+          .feature-point { flex-direction: row !important; text-align: left !important; }
         }
-
         @media (max-width: 576px) {
-          .feature-point {
-            flex-direction: column !important; /* Stack icon on top for small phones */
-            align-items: center !important;
-            text-align: center !important;
-          }
-          .feature-icon {
-            margin-bottom: 0 !important;
-          }
-          .feature-title {
-             font-size: 20px !important;
-          }
+          .feature-point { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+          .feature-icon { margin-bottom: 0 !important; }
+          .feature-title { font-size: 20px !important; }
         }
       `}</style>
     </ConfigProvider>
   );
 };
 
-export default NursingPage;
+export default PhysiotherapyPage;

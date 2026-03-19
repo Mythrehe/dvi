@@ -114,14 +114,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <meta
           property="og:title"
-          content="Crestcode - High-performance technical consultancy"
+          content="Sri Dhanvantri Healthcare Institute"
         />
         <meta
           property="og:description"
-          content="We Own the Engineering.You Own the Vision."
+          content="Sri Dhanvantri Healthcare Institute - Empowering Healthcare Professionals"
         />
         <meta property="og:type" content="website" />
-        <link rel="icon" type="image/png" href="/cc.jpeg" />
+        <link rel="icon" type="image/png" href="/dvi_logo.jpeg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -11,12 +11,55 @@ const DhanvantriScope = () => {
   const accentGold = '#ffc107';
 
   return (
-    <section style={{
+    <section className="scope-section" style={{
       position: 'relative',
       background: '#fff',
-      padding: '50px 0',
+      padding: '60px 0',
       overflow: 'hidden',
     }}>
+      <style jsx>{`
+        .scope-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 40px;
+          position: relative;
+          zIndex: 1;
+        }
+        
+        @media (max-width: 991px) {
+          .scope-container {
+            padding: 0 20px;
+          }
+          .scope-header {
+            text-align: center;
+            margin-bottom: 40px;
+          }
+          .scope-header :global(.ant-space) {
+            justify-content: center;
+            width: 100%;
+          }
+          .decorative-accents {
+            display: none;
+          }
+          .highlight-stats {
+            justify-content: center;
+            text-align: center;
+            gap: 20px !important;
+          }
+          .cta-space {
+            justify-content: center;
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .highlight-stats {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+      `}</style>
+
       {/* Background Pattern */}
       <div style={{
         position: 'absolute',
@@ -41,26 +84,13 @@ const DhanvantriScope = () => {
         background: `linear-gradient(90deg, transparent 0%, ${accentGold} 50%, transparent 100%)`,
       }} />
 
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '0 40px',
-        position: 'relative',
-        zIndex: 1,
-      }}>
-        {/* Section Header */}
-
-
+      <div className="scope-container">
         <Row gutter={[48, 40]} align="middle">
-          {/* LEFT SIDE: Image - TIGHTER ALIGNMENT */}
+          {/* LEFT SIDE: Image & Title */}
           <Col xs={24} lg={10}>
-            <div style={{ marginBottom: '60px' }}>
+            <div className="scope-header" style={{ marginBottom: '40px' }}>
               <Space align="center" style={{ marginBottom: '16px' }}>
-                <div style={{
-                  width: '40px',
-                  height: '2px',
-                  background: accentGold,
-                }} />
+                <div style={{ width: '40px', height: '2px', background: accentGold }} />
                 <Text style={{
                   color: brandDark,
                   fontWeight: 700,
@@ -73,7 +103,7 @@ const DhanvantriScope = () => {
               </Space>
 
               <Title style={{
-                fontSize: 'clamp(32px, 4vw, 48px)',
+                fontSize: 'clamp(28px, 4vw, 48px)',
                 fontWeight: 800,
                 color: brandDark,
                 margin: 0,
@@ -83,85 +113,55 @@ const DhanvantriScope = () => {
                 <span style={{ color: accentGold }}>And Its Scope</span>
               </Title>
             </div>
-            <div style={{
-              position: 'relative',
-              maxWidth: '100%',
-            }}>
-              {/* Main image container - Removed excessive margins */}
+
+            <div style={{ position: 'relative', maxWidth: '100%' }}>
               <div style={{
                 position: 'relative',
                 overflow: 'hidden',
                 boxShadow: '0 20px 50px rgba(0,0,0,0.12)',
+                borderRadius: '4px'
               }}>
                 <img
                   src="/scope.png"
-                  alt="Sri Dhanvantri Health Care Training Centre"
+                  alt="Sri Dhanvantri Scope"
                   style={{
                     width: '100%',
                     height: 'auto',
                     display: 'block',
                     transition: 'transform 0.5s ease',
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
                 />
-
-                {/* Subtle overlay */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(135deg, rgba(26,32,44,0.08) 0%, transparent 50%)',
-                  pointerEvents: 'none',
-                }} />
               </div>
 
-              {/* Gold bar - Moved closer to image */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '-20px',
-                width: '40px',
-                height: '120px',
-                background: accentGold,
-                transform: 'translateY(-50%)',
-                zIndex: 2,
-                boxShadow: '0 5px 20px rgba(255,193,7,0.3)',
-              }} />
-
-              {/* Dark accent - Smaller and closer */}
-              <div style={{
-                position: 'absolute',
-                bottom: '-15px',
-                right: '-15px',
-                width: '80px',
-                height: '80px',
-                background: brandDark,
-                zIndex: -1,
-              }} />
-
-              {/* Corner accent - Tighter */}
-              <div style={{
-                position: 'absolute',
-                top: '15px',
-                right: '15px',
-                width: '30px',
-                height: '30px',
-                borderTop: `2px solid ${accentGold}`,
-                borderRight: `2px solid ${accentGold}`,
-              }} />
+              {/* Decorative elements - hidden on mobile via class */}
+              <div className="decorative-accents">
+                <div style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '-20px',
+                  width: '40px',
+                  height: '120px',
+                  background: accentGold,
+                  transform: 'translateY(-50%)',
+                  zIndex: 2,
+                  boxShadow: '0 5px 20px rgba(255,193,7,0.3)',
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-15px',
+                  right: '-15px',
+                  width: '80px',
+                  height: '80px',
+                  background: brandDark,
+                  zIndex: -1,
+                }} />
+              </div>
             </div>
           </Col>
 
-          {/* RIGHT SIDE: Content - Better alignment */}
+          {/* RIGHT SIDE: Content */}
           <Col xs={24} lg={14}>
-            <div style={{ paddingLeft: '0px' }}>
+            <div style={{ width: '100%' }}>
               <Paragraph style={{
                 color: '#444',
                 fontSize: '16px',
@@ -177,10 +177,10 @@ const DhanvantriScope = () => {
                 lineHeight: '1.8',
                 marginBottom: '24px',
               }}>
-                Our training center provides the expertise required for patient recovery, emergency response, diagnostic procedures, and hospital operational management. The health care industry has made phenomenal strides globally, and paramedical sciences now stand as a crucial and independent vertical.
+                Our training center provides the expertise required for patient recovery, emergency response, diagnostic procedures, and hospital operational management.
               </Paragraph>
 
-              {/* Highlight box - Tighter */}
+              {/* Highlight box */}
               <div style={{
                 background: brandDark,
                 padding: '24px',
@@ -195,34 +195,12 @@ const DhanvantriScope = () => {
                   margin: 0,
                   fontStyle: 'italic',
                 }}>
-                  "A career in Nursing or Paramedical Sciences is not just challenging; it is exceptionally creative and rewarding. By choosing this path, you contribute directly to building a healthier and more resilient society."
+                  "A career in Nursing or Paramedical Sciences is not just challenging; it is exceptionally creative and rewarding."
                 </Paragraph>
-
-                <div style={{
-                  position: 'absolute',
-                  top: '8px',
-                  right: '16px',
-                  fontSize: '48px',
-                  color: accentGold,
-                  opacity: 0.2,
-                  fontFamily: 'serif',
-                  lineHeight: 1,
-                }}>
-                  "
-                </div>
               </div>
 
-              <Paragraph style={{
-                color: '#444',
-                fontSize: '16px',
-                lineHeight: '1.8',
-                marginBottom: '32px',
-              }}>
-                Tremendous career opportunities are available globally, ranging from <strong>Community Clinics</strong> and specialized <strong>Hospital Nursing</strong> to laboratory analysis, surgical technology, and advanced physical therapy. The scope extends into academic research, vocational education, and health policy management.
-              </Paragraph>
-
               {/* CTA Buttons */}
-              <Space size="middle">
+              <Space size="middle" wrap className="cta-space" style={{ marginBottom: '40px' }}>
                 <Button
                   type="primary"
                   size="large"
@@ -231,23 +209,8 @@ const DhanvantriScope = () => {
                     borderColor: accentGold,
                     color: brandDark,
                     fontWeight: 700,
-                    height: '46px',
-                    padding: '0 28px',
-                    fontSize: '13px',
-                    letterSpacing: '1px',
-                    textTransform: 'uppercase',
                     borderRadius: 0,
                     boxShadow: '0 8px 25px rgba(255,193,7,0.3)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = brandDark;
-                    e.currentTarget.style.color = accentGold;
-                    e.currentTarget.style.borderColor = brandDark;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = accentGold;
-                    e.currentTarget.style.color = brandDark;
-                    e.currentTarget.style.borderColor = accentGold;
                   }}
                 >
                   Explore Careers
@@ -261,89 +224,45 @@ const DhanvantriScope = () => {
                     borderColor: brandDark,
                     color: brandDark,
                     fontWeight: 600,
-                    height: '46px',
-                    padding: '0 28px',
-                    fontSize: '13px',
                     borderRadius: 0,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = brandDark;
-                    e.currentTarget.style.color = '#fff';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = brandDark;
                   }}
                 >
                   Learn More
                 </Button>
               </Space>
 
-              {/* Key highlights - Tighter spacing */}
-              <div style={{
+              {/* Key highlights Stats */}
+              <div className="highlight-stats" style={{
                 display: 'flex',
                 gap: '32px',
-                marginTop: '40px',
                 paddingTop: '24px',
                 borderTop: '1px solid rgba(0,0,0,0.08)',
               }}>
-                <div>
-                  <Text style={{
-                    display: 'block',
-                    color: accentGold,
-                    fontSize: '24px',
-                    fontWeight: 800,
-                    lineHeight: 1,
-                  }}>
-                    Global
-                  </Text>
-                  <Text style={{
-                    color: '#666',
-                    fontSize: '12px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                  }}>
-                    Opportunities
-                  </Text>
-                </div>
-                <div>
-                  <Text style={{
-                    display: 'block',
-                    color: accentGold,
-                    fontSize: '24px',
-                    fontWeight: 800,
-                    lineHeight: 1,
-                  }}>
-                    Multi
-                  </Text>
-                  <Text style={{
-                    color: '#666',
-                    fontSize: '12px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                  }}>
-                    Specializations
-                  </Text>
-                </div>
-                <div>
-                  <Text style={{
-                    display: 'block',
-                    color: accentGold,
-                    fontSize: '24px',
-                    fontWeight: 800,
-                    lineHeight: 1,
-                  }}>
-                    High
-                  </Text>
-                  <Text style={{
-                    color: '#666',
-                    fontSize: '12px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                  }}>
-                    Demand
-                  </Text>
-                </div>
+                {[
+                  { label: 'Opportunities', val: 'Global' },
+                  { label: 'Specializations', val: 'Multi' },
+                  { label: 'Demand', val: 'High' }
+                ].map((stat, i) => (
+                  <div key={i}>
+                    <Text style={{
+                      display: 'block',
+                      color: accentGold,
+                      fontSize: '24px',
+                      fontWeight: 800,
+                      lineHeight: 1,
+                    }}>
+                      {stat.val}
+                    </Text>
+                    <Text style={{
+                      color: '#666',
+                      fontSize: '12px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px',
+                    }}>
+                      {stat.label}
+                    </Text>
+                  </div>
+                ))}
               </div>
             </div>
           </Col>

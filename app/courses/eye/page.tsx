@@ -8,34 +8,34 @@ import {
   SafetyCertificateOutlined,
   GlobalOutlined,
   ThunderboltOutlined,
-  HeartOutlined
+  EyeOutlined
 } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
 
-const NursingPage = () => {
+const EyePage = () => {
   const router = useRouter();
   const careerPaths = [
-    "Hospital Nursing Assistant", "Clinic Healthcare Assistant",
-    "Long-term Care Facility Aide", "Home Health Care Provider",
-    "Rehabilitation Center Assistant", "Emergency Room Support Staff",
-    "Outpatient Care Coordinator", "Community Health Worker"
+    "Ophthalmic Technician", "Optometry Assistant",
+    "Ophthalmic Laboratory Technician", "Vision Care Specialist",
+    "Ophthalmic Photographer", "Ophthalmic Surgical Assistant",
+    "Low Vision Rehabilitation Specialist", "Ophthalmic Diagnostic Technician"
   ];
 
   const uniquePoints = [
     {
-      title: "Smart-Ward Simulation",
-      desc: "Train in a high-fidelity environment that mimics modern ICU setups.",
+      title: "Vision Care Excellence",
+      desc: "Master advanced ophthalmic procedures and vision assessment techniques.",
+      icon: <EyeOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
+    },
+    {
+      title: "Diagnostic Precision",
+      desc: "Train with sophisticated ophthalmic diagnostic equipment.",
       icon: <ThunderboltOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     },
     {
-      title: "Holistic Care Protocol",
-      desc: "Beyond medicine, we focus on psychological support and patient empathy.",
-      icon: <HeartOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
-    },
-    {
-      title: "Global Standards",
-      desc: "Curriculum aligned with international healthcare assistant benchmarks.",
+      title: "Surgical Support",
+      desc: "Learn essential skills for ophthalmic surgery assistance.",
       icon: <GlobalOutlined style={{ color: '#ffc107', fontSize: '24px' }} />
     }
   ];
@@ -48,8 +48,8 @@ const NursingPage = () => {
         <div className="hero-section" style={{ 
           background: 'linear-gradient(135deg, #ffc107 0%, #f39c12 100%)', 
           padding: 'clamp(40px, 8vw, 80px) 0', 
-          textAlign: 'center',
           paddingTop: '100px',
+          textAlign: 'center',
         }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
             <Tag color="#1a202c" style={{ marginBottom: '16px', borderRadius: '4px', fontWeight: 'bold' }}>
@@ -57,12 +57,12 @@ const NursingPage = () => {
             </Tag>
             <Title level={1} className="hero-title" style={{ 
               color: '#1a202c', 
-              fontSize: 'clamp(28px, 5vw, 48px)', 
+              fontSize: 'clamp(28px, 5vw, 42px)', 
               fontWeight: '800', 
               marginBottom: '16px',
               lineHeight: 1.2
             }}>
-              Diploma in Health Assistant (Nursing)
+              Diploma in Eye Technician
             </Title>
             <Paragraph className="hero-description" style={{ 
               color: '#2d3748', 
@@ -71,7 +71,7 @@ const NursingPage = () => {
               margin: '0 auto',
               lineHeight: 1.6
             }}>
-              Master the art of clinical support and patient advocacy in our industry-leading nursing program.
+              Become a specialized eye care professional with expertise in ophthalmic technology and vision care.
             </Paragraph>
           </div>
         </div>
@@ -212,14 +212,14 @@ const NursingPage = () => {
             padding: 40px 20px !important;
           }
           .feature-point {
-            flex-direction: row !important; /* Keep icon side-by-side on tablet/large mobile */
+            flex-direction: row !important;
             text-align: left !important;
           }
         }
 
         @media (max-width: 576px) {
           .feature-point {
-            flex-direction: column !important; /* Stack icon on top for small phones */
+            flex-direction: column !important;
             align-items: center !important;
             text-align: center !important;
           }
@@ -235,4 +235,4 @@ const NursingPage = () => {
   );
 };
 
-export default NursingPage;
+export default EyePage;

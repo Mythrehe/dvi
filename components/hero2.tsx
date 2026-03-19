@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsOTPModalOpen, setOTPData } from '@/store/authSlice';
 import { useAdmin } from './admin/context';
 import { RootState } from '@/store';
-import OTPModal from './otpModal';
+// import OTPModal from './otpModal';
 
 export interface WishlistFormRef {
   focusAndGlow: () => void;
@@ -1189,7 +1189,7 @@ const HeroSection2 = forwardRef<WishlistFormRef>((props, ref) => {
           </div>
         </div>
 
-        <OTPModal
+        {/* <OTPModal
           isOpen={isOTPModalOpen}
           onClose={() => dispatch(setIsOTPModalOpen(false))}
           setShowConfetti={setShowConfetti}
@@ -1198,7 +1198,7 @@ const HeroSection2 = forwardRef<WishlistFormRef>((props, ref) => {
           onVerify={handleVerify}
           onResend={handleResend}
           setEmail={setEmail}
-        />
+        /> */}
       </section>
 
       {/* Birthday Celebration Popup */}
